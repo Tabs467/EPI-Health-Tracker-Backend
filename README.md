@@ -1,4 +1,4 @@
-# Laravel-Auth-Backend
+# EPI Health Tracker Backend
 
 A Laravel-based authentication backend that provides secure user management using Laravel Sanctum and Fortify. This project includes API authentication, registration, login, and user management.
 
@@ -14,7 +14,7 @@ A Laravel-based authentication backend that provides secure user management usin
 
 This backend is designed to work seamlessly with a Vue.js frontend that I built. You can find my custom Vue.js implementation here:
 
-[Vue-Auth-Frontend](https://github.com/Tabs467/Vue-Auth-Frontend)
+[EPI-Health-Tracker-Frontend](https://github.com/Tabs467/EPI-Health-Tracker-Frontend)
 
 ## Project Setup
 
