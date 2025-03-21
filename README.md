@@ -1,6 +1,6 @@
 # EPI Health Tracker Backend
 
-A Laravel-based authentication backend that provides secure user management using Laravel Sanctum and Fortify. This project includes API authentication, registration, login, and user management.
+Health tracker for EPI, including tracking food, medication, and symptoms. Including a Laravel-based authentication backend that provides secure user management using Laravel Sanctum and Fortify. This project also includes API authentication, registration, login, and user management.
 
 ## Tech Stack
 
