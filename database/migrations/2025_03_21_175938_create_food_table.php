@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('food', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->date('date');
             $table->enum('time', ['1','2','3']);
             $table->string('food_title');
