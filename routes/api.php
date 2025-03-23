@@ -10,3 +10,6 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::apiResource('food', \App\Http\Controllers\FoodController::class)
     ->middleware(['auth:sanctum']);
+
+Route::apiResource('symptom', \App\Http\Controllers\SymptomController::class)
+    ->middleware(['auth:sanctum']);

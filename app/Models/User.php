@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function food(): HasMany {
         return $this->hasMany(Food::class);
     }
+
+    public function symptoms(): HasMany {
+        return $this->hasMany(Symptom::class);
+    }
 }
