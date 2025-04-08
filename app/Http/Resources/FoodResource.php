@@ -23,6 +23,7 @@ class FoodResource extends JsonResource
             'fatContent' => $this->fat,
             'gluten' => $this->gluten,
             'dairy' => $this->dairy,
+            'medication' => $this->medication,
         ];
     }
 }

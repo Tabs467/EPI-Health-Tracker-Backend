@@ -39,6 +39,7 @@ class FoodController extends Controller
             'fatContent' => ['required', 'in:' . implode(',', array_column(FatType::cases(), 'name'))],
             'gluten' => ['required', 'boolean'],
             'dairy' => ['required', 'boolean'],
+            'medication' => ['required', 'integer'],
         ]);
 
         $key_mappings = [
