@@ -17,7 +17,7 @@ class SymptomController extends Controller
     public function index()
     {
         $symptom = auth()->user()->symptoms()
-            ->orderByRaw("date DESC, FIELD(time, '3', '2', '1') DESC, created_at DESC")
+            ->orderByRaw("date DESC, FIELD(time, '1', '2', '3') DESC, created_at DESC")
             ->take(10)->get();
         return SymptomResource::collection($symptom);
     }
