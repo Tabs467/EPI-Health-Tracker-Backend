@@ -12,11 +12,14 @@ class SymptomController extends Controller
 {
     use AuthorizesRequests;
     /**
-     * Display a listing of the resource.
+     * Display a listing of type SymptomResource
      */
     public function index()
     {
-        //
+        $symptom = auth()->user()->symptoms()
+            ->orderByRaw("date DESC, FIELD(time, '3', '2', '1') DESC, created_at DESC")
+            ->take(10)->get();
+        return SymptomResource::collection($symptom);
     }
 
     /**

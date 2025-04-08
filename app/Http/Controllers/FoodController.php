@@ -15,11 +15,14 @@ class FoodController extends Controller
 {
     use AuthorizesRequests;
     /**
-     * Display a listing of the resource.
+     * Display a listing of type FoodResource
      */
     public function index()
     {
-        //
+        $food = auth()->user()->food()
+            ->orderByRaw("date DESC, FIELD(time, '3', '2', '1') DESC, created_at DESC")
+            ->take(10)->get();
+        return FoodResource::collection($food);
     }
 
     /**
