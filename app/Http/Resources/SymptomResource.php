@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Enums\TimeType;
 
 class SymptomResource extends JsonResource
 {
@@ -16,7 +17,7 @@ class SymptomResource extends JsonResource
     {
         return [
             'date' => $this->date,
-            'timeOfDay' => $this->time,
+            'timeOfDay' => TimeType::from($this->time)->name,
             'type' => $this->type,
         ];
     }
