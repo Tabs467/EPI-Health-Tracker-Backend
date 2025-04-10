@@ -27,12 +27,60 @@ class SymptomController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $data = $this->validateSymptomRequest($request);
+
+        $formatted_data = $this->formatSymptomRequestData($data);
+
+        auth()->user()->symptoms()->create($formatted_data);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Symptom created successfully',
+        ], 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Symptom $symptom)
+    {
+        //
+    }
+
+    /**
+     * Update a Symptom entry
+     */
+    public function update(Request $request, Symptom $symptom)
+    {
+        $data = $this->validateSymptomRequest($request);
+
+        $formatted_data = $this->formatSymptomRequestData($data);
+        
+        $symptom->update($formatted_data);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Symptom updated successfully',
+        ], 201);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Symptom $symptom)
+    {
+        //
+    }
+
+    private function validateSymptomRequest(Request $request) {
+        return $request->validate([
             'date' => ['required', 'date'],
             'timeOfDay' => ['required', 'in:' . implode(',', array_column(TimeType::cases(), 'name'))],
             'type' => ['required', 'string', 'max:255'],
         ]);
+    }
 
+    private function formatSymptomRequestData($data) {
         $key_mappings = [
             'timeOfDay' => 'time',
         ];
@@ -56,36 +104,6 @@ class SymptomController extends Controller
                     break;
             }
         }
-
-        auth()->user()->symptoms()->create($formatted_data);
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Symptom created successfully',
-        ], 201);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Symptom $symptom)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Symptom $symptom)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Symptom $symptom)
-    {
-        //
+        return $formatted_data;
     }
 }

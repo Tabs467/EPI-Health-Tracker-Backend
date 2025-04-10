@@ -30,7 +30,53 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $data = $this->validateFoodRequest($request);
+
+        $formatted_data = $this->formatFoodRequestData($data);
+
+        auth()->user()->food()->create($formatted_data);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Food created successfully',
+        ], 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Food $food)
+    {
+        //
+    }
+
+    /**
+     * Update a Food entry
+     */
+    public function update(Request $request, Food $food)
+    {
+        $data = $this->validateFoodRequest($request);
+
+        $formatted_data = $this->formatFoodRequestData($data);
+
+        $food->update($formatted_data);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Food updated successfully',
+        ], 201);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Food $food)
+    {
+        //
+    }
+
+    private function validateFoodRequest(Request $request) {
+        return $request->validate([
             'date' => ['required', 'date'],
             'timeOfDay' => ['required', 'in:' . implode(',', array_column(TimeType::cases(), 'name'))],
             'foodTitle' => ['required', 'string', 'max:255'],
@@ -41,7 +87,9 @@ class FoodController extends Controller
             'dairy' => ['required', 'boolean'],
             'medication' => ['required', 'integer'],
         ]);
+    }
 
+    private function formatFoodRequestData($data) {
         $key_mappings = [
             'timeOfDay' => 'time',
             'foodTitle' => 'food_title',
@@ -77,36 +125,6 @@ class FoodController extends Controller
                     break;
             }
         }
-
-        auth()->user()->food()->create($formatted_data);
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Food created successfully',
-        ], 201);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Food $food)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Food $food)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Food $food)
-    {
-        //
+        return $formatted_data;
     }
 }
