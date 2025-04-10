@@ -65,11 +65,11 @@ class SymptomController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Symptom from storage
      */
     public function destroy(Symptom $symptom)
     {
-        //
+        $symptom->delete();
     }
 
     private function validateSymptomRequest(Request $request) {
