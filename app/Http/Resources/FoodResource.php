@@ -8,6 +8,7 @@ use App\Enums\TimeType;
 use App\Enums\SizeType;
 use App\Enums\SpiceType;
 use App\Enums\FatType;
+use App\Enums\CaffeineType;
 
 class FoodResource extends JsonResource
 {
@@ -26,6 +27,7 @@ class FoodResource extends JsonResource
             'size' => SizeType::from($this->size)->name,
             'spiceLevel' => SpiceType::from($this->spice)->name,
             'fatContent' => FatType::from($this->fat)->name,
+            'caffeine' => CaffeineType::from($this->caffeine)->name,
             'gluten' => (bool) $this->gluten,
             'dairy' => (bool) $this->dairy,
             'medication' => $this->medication,

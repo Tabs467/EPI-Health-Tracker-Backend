@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Food extends Model
 {
-    protected $fillable = ['date', 'time', 'food_title', 'size', 'spice', 'fat', 'gluten', 'dairy', 'medication'];
+    protected $fillable = ['date', 'time', 'food_title', 'size', 'spice', 'fat', 'caffeine', 'gluten', 'dairy', 'medication'];
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);

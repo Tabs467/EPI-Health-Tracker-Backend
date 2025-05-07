@@ -10,6 +10,7 @@ use App\Enums\TimeType;
 use App\Enums\SizeType;
 use App\Enums\SpiceType;
 use App\Enums\FatType;
+use App\Enums\CaffeineType;
 
 class FoodController extends Controller
 {
@@ -83,6 +84,7 @@ class FoodController extends Controller
             'size' => ['required', 'in:' . implode(',', array_column(SizeType::cases(), 'name'))],
             'spiceLevel' => ['required', 'in:' . implode(',', array_column(SpiceType::cases(), 'name'))],
             'fatContent' => ['required', 'in:' . implode(',', array_column(FatType::cases(), 'name'))],
+            'caffeine' => ['required', 'in:' . implode(',', array_column(CaffeineType::cases(), 'name'))],
             'gluten' => ['required', 'boolean'],
             'dairy' => ['required', 'boolean'],
             'medication' => ['required', 'integer'],
@@ -120,6 +122,9 @@ class FoodController extends Controller
                 case "fat":
                     $formatted_data[$new_key] = constant(FatType::class . "::$value")->value;
                     break;
+                case "caffeine":
+                    $formatted_data[$new_key] = constant(CaffeineType::class . "::$value")->value;
+                    break;    
                 default:
                     $formatted_data[$new_key] = $value;
                     break;
